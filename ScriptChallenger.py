@@ -1,24 +1,24 @@
-def criba_eratostenes(n):
-    es_primo = [True] * (n + 1)
-    es_primo[0] = es_primo[1] = False
+def sieve_of_eratosthenes(n):
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
 
     for i in range(2, int(n**0.5) + 1):
-        if es_primo[i]:
+        if is_prime[i]:
             for j in range(i*i, n + 1, i):
-                es_primo[j] = False
+                is_prime[j] = False
 
-    numeros_primos = [num for num in range(n + 1) if es_primo[num]]
-    return numeros_primos
+    prime_numbers = [num for num in range(n + 1) if is_prime[num]]
+    return prime_numbers
 
 def main():
     n = 250
-    numeros_primos = criba_eratostenes(n)
+    prime_numbers = sieve_of_eratosthenes(n)
 
-    with open("results.txt", "w") as archivo:
-        for primo in numeros_primos:
-            archivo.write(f"{primo}\n")
+    with open("results.txt", "w") as file:
+        for prime in prime_numbers:
+            file.write(f"{prime}\n")
 
-    print("Números primos generados y guardados en results.txt")
+    print("Prime numbers generated and saved in results.txt")
 
 if __name__ == "__main__":
     main()
